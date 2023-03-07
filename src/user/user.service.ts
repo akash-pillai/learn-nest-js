@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { UserDto } from './dto/user.dto';
+import {isEqual}  from "lodash";
 
 
 
@@ -31,6 +32,20 @@ export class UserService{
       return "user updated sucessfully";
       }catch(ex:any){
         return "something went wrong"
+      }
+    }
+
+    deleteUser(user:UserDto):UserDto[]{
+       try{
+        for(let obj of this.users){
+            if(isEqual(obj,user)){
+                let index=this.users.indexOf(obj);
+                this.users.splice(index, 1);
+            }
+        }
+        return this.users;
+      }catch(ex:any){
+        console.log(ex);
       }
     }
 
