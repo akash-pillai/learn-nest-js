@@ -20,6 +20,20 @@ export class UserService{
         return "sucessfully added user";
     }
 
+    updateUser(user:UserDto,name:string){
+       try{
+        for(let obj of this.users){
+            if(obj.name===name){
+                obj.name=user.name;
+                obj.age=user.age;
+            }
+        }
+      return "user updated sucessfully";
+      }catch(ex:any){
+        return "something went wrong"
+      }
+    }
+
 
 
 
