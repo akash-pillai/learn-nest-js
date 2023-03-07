@@ -1,4 +1,5 @@
 import { Body, Controller, Get, Param, Post } from "@nestjs/common/decorators";
+import { UserDto } from "./dto/user.dto";
 import { UserService } from "./user.service";
 
 @Controller("/admin")
@@ -9,13 +10,13 @@ export class UserController{
     }
 
     @Get("/list")
-    listUsers():string[]{
+    listUsers():UserDto[]{
         return this.userService.listUsers();
     }
 
-    @Post("/add/:name")
-    addUser(@Param('name') name: string):string{
-        return this.userService.addUsers(name);
+    @Post("/add/")
+    addUser(@Body() user: UserDto):string{
+        return this.userService.addUsers(user);
     }
 
     

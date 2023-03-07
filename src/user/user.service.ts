@@ -1,18 +1,22 @@
 import { Injectable } from '@nestjs/common';
+import { UserDto } from './dto/user.dto';
 
 
 
 @Injectable()
 export class UserService{
 
-    public users : string[]=["Akash"];
+    public users : UserDto[]=[{
+        "name":"Akash",
+        "age":26
+    }];
 
-    listUsers():string[]{
+    listUsers():UserDto[]{
         return this.users;
     }
 
-    addUsers(userNaame:string):string{
-        this.users.push(userNaame);
+    addUsers(user:UserDto):string{
+        this.users.push(user);
         return "sucessfully added user";
     }
 
